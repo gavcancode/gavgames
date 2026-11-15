@@ -3,7 +3,7 @@ let category="All",view="home",currentGame=null;
 let favorites=new Set(JSON.parse(localStorage.getItem("gavgames-favorites")||"[]"));
 const $=id=>document.getElementById(id);
 $("year").textContent=new Date().getFullYear();
-const featuredGame=GAMES.find(g=>g.id==="hexgl")||GAMES[0];
+const featuredGame=GAMES.find(g=>g.id===(window.GAVGAMES_FEATURED_ID||"hexgl"))||GAMES[0];
 if(featuredGame){$("featuredThumbnail").src=thumbnailFor(featuredGame);$("featuredThumbnail").alt=`${featuredGame.title} game preview`;$("spotlightTitle").textContent=featuredGame.title;$("spotlightDescription").textContent=featuredGame.description;$("featuredPlayButton").innerHTML=`Play ${featuredGame.title} <span>→</span>`;}
 function saveFavorites(){localStorage.setItem("gavgames-favorites",JSON.stringify([...favorites]));$("favoriteCount").textContent=favorites.size;}
 function thumbnailFor(game){return game.thumbnail||`https://s.wordpress.com/mshots/v1/${encodeURIComponent(game.url)}?w=700`;}
