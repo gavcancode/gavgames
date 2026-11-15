@@ -24,10 +24,19 @@ gamesEl.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.targ
 function toggleFavorite(id){favorites.has(id)?favorites.delete(id):favorites.add(id);saveFavorites();render();if(currentGame?.id===id)updatePlayerFavorite();}
 function updatePlayerFavorite(){$("playerFavorite").textContent=favorites.has(currentGame.id)?"♥":"♡";$("playerFavorite").style.color=favorites.has(currentGame.id)?"#ff75ad":"white";}
 function openGame(id){currentGame=GAMES.find(g=>g.id===id);if(!currentGame)return;if(currentGame.type==="external"){window.open(currentGame.url,"_blank","noopener,noreferrer");return;}
- $("site-shell").classList.add("hidden");$("playerView").classList.remove("hidden");$("playerTitle").textContent=currentGame.title;$("playerHeading").textContent=currentGame.title;$("playerDescription").textContent=currentGame.description;updatePlayerFavorite();mountGame(currentGame);window.scrollTo(0,0);}
+ $("site-shell").classList.add("hidden");$("playerView").classList.remove("hidden");$("playerTitle").textContent=currentGame.title;$("playerHeading").textContent=currentGame.title;$("playerDescription").textContent=currentGame.description;
+ $("playerAttribution").innerHTML=currentGame.sourceUrl
+  ? `Source: <a href="${currentGame.sourceUrl}" target="_blank" rel="noopener noreferrer">${currentGame.sourceLabel||"Original project"}</a> · License: ${currentGame.license||"See source"}`
+  : "Original GavGames mini-game";
+ updatePlayerFavorite();mountGame(currentGame);window.scrollTo(0,0);}
 function closeGame(){$("playerView").classList.add("hidden");$("site-shell").classList.remove("hidden");$("playerFrame").innerHTML="";currentGame=null;}
 $("backButton").addEventListener("click",closeGame);$("playerFavorite").addEventListener("click",()=>currentGame&&toggleFavorite(currentGame.id));
-function mountGame(g){const root=$("playerFrame");root.innerHTML="";if(g.game==="tictactoe")return ticTacToe(root);if(g.game==="reaction")return reaction(root);if(g.game==="hoops")return hoops(root);if(g.game==="memory")return memory(root);if(g.game==="clicker")return clicker(root);if(g.game==="snake")return snake(root);}
+function mountGame(g){const root=$("playerFrame");root.innerHTML="";
+ if(g.type==="hosted"){
+  root.innerHTML=`<div class="hosted-game"><iframe src="${g.url}" title="${g.title}" loading="eager" allow="fullscreen; autoplay; gamepad" allowfullscreen referrerpolicy="no-referrer"></iframe><div class="hosted-fallback">Game not loading? <a href="${g.url}" target="_blank" rel="noopener noreferrer">Open it directly ↗</a></div></div>`;
+  return;
+ }
+ if(g.game==="tictactoe")return ticTacToe(root);if(g.game==="reaction")return reaction(root);if(g.game==="hoops")return hoops(root);if(g.game==="memory")return memory(root);if(g.game==="clicker")return clicker(root);if(g.game==="snake")return snake(root);}
 function mini(root,html){root.innerHTML=`<div class="mini-game">${html}</div>`;}
 function ticTacToe(root){let board=Array(9).fill(""),over=false;const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];function draw(msg="Your turn — you're X."){mini(root,`<h2>Tic-Tac-Toe</h2><p>${msg}</p><div class="mini-board">${board.map((v,i)=>`<button class="mini-cell" data-cell="${i}">${v}</button>`).join("")}</div><button id="reset">Restart</button>`);root.querySelectorAll("[data-cell]").forEach(b=>b.onclick=()=>move(+b.dataset.cell));root.querySelector("#reset").onclick=()=>{board=Array(9).fill("");over=false;draw();};}function winner(){for(const line of wins){const [a,b,c]=line;if(board[a]&&board[a]===board[b]&&board[b]===board[c])return board[a];}return board.every(Boolean)?"draw":null;}function move(i){if(over||board[i])return;board[i]="X";let w=winner();if(w){over=true;return draw(w==="draw"?"It's a tie!":"You win! 🎉");}const empty=board.map((v,i)=>v?null:i).filter(v=>v!==null);if(empty.length){let pick=empty.find(i=>wins.some(line=>line.includes(i)&&line.filter(x=>board[x]==="O").length===1&&line.filter(x=>board[x]==="X").length===0));board[pick??empty[Math.floor(Math.random()*empty.length)]]="O";}w=winner();if(w)over=true;draw(w?(w==="draw"?"It's a tie!":"Computer wins!"):"Your turn — you're X.");}draw();}
 function reaction(root){let state="ready",start=0,timer;function draw(title,sub,btn){mini(root,`<h2>⚡ Reaction Rush</h2><p>${title}</p><p class="score">${sub}</p><button id="react">${btn}</button>`);root.querySelector("#react").onclick=()=>{if(state==="ready"){state="wait";draw("Wait for the green signal...","Get ready","Wait...");timer=setTimeout(()=>{state="go";start=performance.now();draw("CLICK NOW! 🟢","GO!","CLICK!");},1000+Math.random()*3500);}else if(state==="wait"){clearTimeout(timer);state="ready";draw("Too early! Try again.","False start","Try again");}else{const ms=Math.round(performance.now()-start);state="ready";draw("Nice reflexes!",""+ms+" ms","Try again");}};}draw("Click when the panel says GO.","Ready?","Start");}
@@ -39,7 +48,7 @@ saveFavorites();render();
 
 // Homepage discovery controls
 function playRandomGame(){
- const playable=GAMES.filter(g=>g.type==="builtin");
+ const playable=GAMES.filter(g=>g.type!=="external");
  if(!playable.length)return;
  const pick=playable[Math.floor(Math.random()*playable.length)];
  openGame(pick.id);
