@@ -36,3 +36,23 @@ function memory(root){let icons=["🍉","🍉","🚀","🚀","🐸","🐸","⭐"
 function clicker(root){let score=0,started=false,remaining=10,interval;function draw(msg="Click the cookie as many times as you can in 10 seconds."){mini(root,`<h2>🍪 Cookie Clicker Mini</h2><p>${msg}</p><div class="score">${score} points · ${remaining}s</div><button id="cookie" style="font-size:65px;background:#ffffff12;padding:15px 35px">🍪</button><br><button id="start">Start / Reset</button>`);root.querySelector("#cookie").onclick=()=>{if(started&&remaining>0){score++;root.querySelector(".score").textContent=`${score} points · ${remaining}s`;}};root.querySelector("#start").onclick=()=>{clearInterval(interval);score=0;remaining=10;started=true;draw("Go! Go! Go!");interval=setInterval(()=>{remaining--;const s=root.querySelector(".score");if(s)s.textContent=`${score} points · ${remaining}s`;if(remaining<=0){clearInterval(interval);started=false;draw(`Time! Final score: ${score}`);}},1000);};}draw();}
 function snake(root){mini(root,`<h2>🐍 Snake</h2><p>Use arrow keys to eat the red food. Don't hit the wall or yourself.</p><canvas id="snakeCanvas" width="320" height="320" style="max-width:100%;background:#161629;border-radius:12px"></canvas><p class="score" id="snakeScore">Score: 0</p><button id="snakeStart">Start / Restart</button>`);const c=root.querySelector("canvas"),ctx=c.getContext("2d"),scoreEl=root.querySelector("#snakeScore");let body,food,dir,loop,score,alive;function reset(){clearInterval(loop);body=[{x:8,y:8},{x:7,y:8},{x:6,y:8}];food={x:13,y:8};dir={x:1,y:0};score=0;alive=true;draw();loop=setInterval(step,115);}function draw(){ctx.fillStyle="#161629";ctx.fillRect(0,0,320,320);ctx.fillStyle="#ff6c79";ctx.fillRect(food.x*16+2,food.y*16+2,12,12);body.forEach((p,i)=>{ctx.fillStyle=i?"#6dcf9b":"#a9f3be";ctx.fillRect(p.x*16+1,p.y*16+1,14,14);});scoreEl.textContent="Score: "+score;}function step(){const head={x:body[0].x+dir.x,y:body[0].y+dir.y};if(head.x<0||head.y<0||head.x>=20||head.y>=20||body.some(p=>p.x===head.x&&p.y===head.y)){clearInterval(loop);alive=false;scoreEl.textContent="Game over — score: "+score;return;}body.unshift(head);if(head.x===food.x&&head.y===food.y){score++;food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*20)};}else body.pop();draw();}function key(e){const d={ArrowUp:{x:0,y:-1},ArrowDown:{x:0,y:1},ArrowLeft:{x:-1,y:0},ArrowRight:{x:1,y:0}}[e.key];if(d&&!(d.x===-dir.x&&d.y===-dir.y)){dir=d;e.preventDefault();}}window.addEventListener("keydown",key);root.querySelector("#snakeStart").onclick=reset;reset();}
 saveFavorites();render();
+
+// Homepage discovery controls
+function playRandomGame(){
+ const playable=GAMES.filter(g=>g.type==="builtin");
+ if(!playable.length)return;
+ const pick=playable[Math.floor(Math.random()*playable.length)];
+ openGame(pick.id);
+}
+$("randomGameButton").addEventListener("click",playRandomGame);
+$("heroRandomButton").addEventListener("click",playRandomGame);
+$("featuredPlayButton").addEventListener("click",()=>openGame("hoops"));
+document.querySelectorAll("[data-shortcut-category]").forEach(button=>{
+ button.addEventListener("click",()=>{
+  if(view!=="home")setView("home");
+  category=button.dataset.shortcutCategory;
+  document.querySelectorAll(".filter").forEach(filter=>filter.classList.toggle("active",filter.dataset.category===category));
+  render();
+  $("gameGrid").scrollIntoView({behavior:"smooth",block:"start"});
+ });
+});
