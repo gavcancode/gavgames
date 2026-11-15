@@ -27,7 +27,7 @@ Only embed games when their publisher permits embedding. Many game portals block
 - Favorites are stored in each visitor's browser using localStorage.
 - The mini-games are original simple demos and run locally in the browser.
 - The Google Fonts import is optional; the site falls back to system fonts if unavailable.
-- Change `hello@example.com` in `index.html` to your preferred contact address, or remove the suggestion link.
+- The suggestion link opens a new GitHub issue in the GavGames repository.
 
 
 ## Game library expansion
@@ -40,3 +40,8 @@ The catalog currently includes **25 playable games**:
 The 19 third-party games are currently embedded from their upstream public game pages rather than copied into this repository. This keeps the GavGames repo lightweight and preserves the upstream source of each game, but means a game can stop loading if its host changes or blocks embedding. Each card includes a direct-open fallback and the player shows its source and license.
 
 See [THIRD_PARTY_GAMES.md](THIRD_PARTY_GAMES.md) for source and license details. Before copying any third-party game files into this repository, review the exact license and notices for its code, images, audio, and fonts.
+
+
+### Catalog quality checks
+
+The third-party catalog includes 19 upstream titles. During a source-integrity review, duplicate/mislabelled pages in the original candidate list were removed and replaced with distinct game pages. The current 15-game selection from `sausi-7/games` has unique index-file contents and its referenced relative files were checked against the upstream repository tree. This does not replace manual in-browser gameplay testing or mobile testing.
