@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101020"><title>Developer Studio — GavGames</title>
+<link rel="stylesheet" href="developer.css">
+</head>
+<body>
+<div class="shell">
+<header class="top"><a class="brand" href="index.html"><span class="mark">G</span> Gav<span>Games</span></a><div class="top-right"><span class="status-dot"></span> DEVELOPER STUDIO <a href="index.html">← View site</a></div></header>
+<main>
+<section class="welcome"><div><div class="eyebrow">CONTROL ROOM</div><h1>Build the next level.</h1><p>Manage your game catalog, review player suggestions, and organize the GavGames experience.</p></div><div class="welcome-icon">⌘</div></section>
+<div class="notice"><strong>Local editor:</strong> Your changes stay in this browser until you export <code>games.js</code> and publish it through GitHub. This page is not a secure, account-protected admin system.</div>
+<section class="stats" id="stats"><article><span>GAMES IN LIBRARY</span><strong id="gameCount">—</strong></article><article><span>SUGGESTIONS</span><strong id="suggestionCount">—</strong></article><article><span>CHANGES PENDING</span><strong id="changeCount">0</strong></article></section>
+<nav class="tabs"><button class="tab active" data-tab="library">Game library</button><button class="tab" data-tab="suggestions">Suggestions <span id="suggestionBadge">…</span></button><button class="tab" data-tab="site">Site organization</button></nav>
+<section class="panel" id="libraryPanel">
+<div class="panel-head"><div><div class="eyebrow">CONTENT MANAGEMENT</div><h2>Your games</h2><p>Drag games to change their order. Add or remove entries, then export the catalog.</p></div><button class="btn primary" id="addToggle">＋ Add a game</button></div>
+<div class="toolbar"><input id="gameSearch" placeholder="Search your games…" type="search"><button class="btn" id="resetOrder">Reset order</button><button class="btn primary" id="exportGames">Export games.js ↓</button></div>
+<form id="addForm" class="add-form hidden">
+<h3>Add a game</h3><div class="form-grid">
+<label>Game title<input name="title" required placeholder="e.g. Super Racer"></label>
+<label>Game ID<input name="id" required placeholder="super-racer (unique)"></label>
+<label>Game URL<input name="url" type="url" required placeholder="https://example.com/game"></label>
+<label>Category<select name="category"><option>Arcade</option><option>Sports</option><option>Puzzle</option><option>Shooter</option><option>Racing</option><option>Board</option><option>3D</option><option>Adventure</option></select></label>
+<label>Card color<select name="art"><option>art-purple</option><option>art-orange</option><option>art-blue</option><option>art-pink</option><option>art-green</option><option>art-yellow</option><option>art-red</option><option>art-cyan</option></select></label>
+<label>Badge<input name="badge" placeholder="NEW GAME"></label>
+<label class="wide">Description<textarea name="description" required rows="2" placeholder="What is this game about?"></textarea></label>
+<label class="wide">Source / license URL (optional)<input name="sourceUrl" type="url" placeholder="https://github.com/..."></label>
+</div><div class="form-actions"><button class="btn primary" type="submit">Add to library</button><button class="btn" type="button" id="cancelAdd">Cancel</button></div></form>
+<div class="game-list-head"><span>DRAG TO REORDER</span><span>GAME DETAILS</span><span>ACTIONS</span></div><div id="gameList" class="game-list"><p class="loading">Loading catalog…</p></div>
+</section>
+<section class="panel hidden" id="suggestionsPanel"><div class="panel-head"><div><div class="eyebrow">PLAYER FEEDBACK</div><h2>Game suggestions</h2><p>Suggestions submitted through your website's GitHub suggestion link appear here as issues.</p></div><a class="btn primary" href="https://github.com/gavcancode/gavgames/issues" target="_blank" rel="noopener">Open all issues ↗</a></div><div id="suggestionsList" class="suggestions"><p class="loading">Loading suggestions…</p></div></section>
+<section class="panel hidden" id="sitePanel"><div class="panel-head"><div><div class="eyebrow">LAYOUT & NAVIGATION</div><h2>Site organization</h2><p>Choose what to feature and how your library is organized.</p></div></div>
+<div class="settings-grid"><article class="setting"><div><h3>Featured game</h3><p>Choose which catalog game appears in the homepage spotlight.</p></div><select id="featuredSelect"></select></article><article class="setting"><div><h3>Game library order</h3><p>Use the Game library tab to drag cards into the order visitors see.</p></div><button class="btn" id="goLibrary">Organize games →</button></article><article class="setting"><div><h3>Publish your changes</h3><p>Export the updated catalog and replace <code>gavgames/games.js</code> in your GitHub repository. The website will update after deployment.</p></div><button class="btn primary" id="exportFromSite">Export games.js ↓</button></article><article class="setting"><div><h3>Game suggestions</h3><p>Review requests and open each GitHub issue to reply or close it.</p></div><a class="btn" href="https://github.com/gavcancode/gavgames/issues" target="_blank" rel="noopener">Manage on GitHub ↗</a></article></div>
+</section>
+</main><footer>GavGames Developer Studio <span>Built for the next level.</span></footer>
+</div>
+<script src="games.js"></script><script src="developer.js"></script>
+</body></html>
