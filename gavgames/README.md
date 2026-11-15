@@ -20,24 +20,19 @@ A colorful, responsive browser-game hub built with plain HTML, CSS, and JavaScri
 Every push to your connected GitHub branch can trigger a new deployment.
 
 ## Add a game
-Edit `games.js`. External games use `type: "external"` and a normal `https://` URL. Built-in games need a matching game implementation in `app.js`.
-Only embed games when their publisher permits embedding. Many game portals block iframe embedding; use an external link for those.
+Edit `games.js` to add or update games. Hosted games use `type: "hosted"` with the publisher public game URL; external destinations use `type: "external"` and open in a new tab. Game cards use live page screenshots as thumbnails. Only embed games when their publisher permits embedding. Many game portals block iframe embedding; use an external link for those.
 
 ## Notes
 - Favorites are stored in each visitor's browser using localStorage.
-- The mini-games are original simple demos and run locally in the browser.
 - The Google Fonts import is optional; the site falls back to system fonts if unavailable.
 - The suggestion link opens a new GitHub issue in the GavGames repository.
 
 
 ## Game library expansion
 
-The catalog currently includes **25 playable games**:
-- 6 original GavGames mini-games.
-- 4 notable open-source games: 2048, HexGL, Hextris, and A Dark Room.
-- 15 additional browser games from the MIT-licensed `sausi-7/games` collection.
+The catalog currently includes **19 hosted third-party games**, plus links to the CrazyGames and Poki game portals. The six original code-based mini-games have been removed.
 
-The 19 third-party games are currently embedded from their upstream public game pages rather than copied into this repository. This keeps the GavGames repo lightweight and preserves the upstream source of each game, but means a game can stop loading if its host changes or blocks embedding. Each card includes a direct-open fallback and the player shows its source and license.
+The third-party games are embedded from their upstream public game pages rather than copied into this repository. This keeps the GavGames repo lightweight and preserves the upstream source of each game, but means a game can stop loading if its host changes or blocks embedding. Each card now uses a screenshot thumbnail of its game page; the player includes a direct-open fallback and displays source and license information.
 
 See [THIRD_PARTY_GAMES.md](THIRD_PARTY_GAMES.md) for source and license details. Before copying any third-party game files into this repository, review the exact license and notices for its code, images, audio, and fonts.
 
