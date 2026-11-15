@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101020">
+  <meta name="description" content="GavGames — find your next favorite browser game.">
+  <title>GavGames — Play Something</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-shell" id="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#" id="homeLink" aria-label="GavGames home">
+        <span class="brand-mark">G</span><span>gav<span class="brand-accent">games</span></span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="home">Home</button>
+        <button class="nav-link" data-view="favorites">Favorites <span id="favoriteCount" class="count">0</span></button>
+      </nav>
+      <a class="top-pill" href="#gameGrid">Explore games <span>↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-dot"></span> YOUR NEXT BREAK STARTS HERE</div>
+          <h1>Find your next<br><span class="gradient-text">favorite game.</span></h1>
+          <p>Quick games. Big fun. No downloads required.</p>
+          <a class="primary-btn" href="#gameGrid">Explore games <span>→</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <div class="float-card float-card-one">🎮</div>
+          <div class="float-card float-card-two">👾</div>
+          <div class="float-card float-card-three">🏀</div>
+          <div class="hero-ring"></div>
+          <div class="hero-spark">✦</div>
+        </div>
+        <div class="hero-bottom"><span>PRESS PLAY</span><span>✦</span><span>REPEAT</span></div>
+      </section>
+
+      <section class="games-section" id="gameGrid">
+        <div class="section-heading">
+          <div><div class="eyebrow">THE GAME LIBRARY</div><h2 id="sectionTitle">Play something good.</h2></div>
+          <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games..." aria-label="Search games"></div>
+        </div>
+        <div class="filters" id="filters">
+          <button class="filter active" data-category="All">All games</button>
+          <button class="filter" data-category="Arcade">🕹️ Arcade</button>
+          <button class="filter" data-category="Sports">🏀 Sports</button>
+          <button class="filter" data-category="Puzzle">🧩 Puzzle</button>
+          <button class="filter" data-category="External">↗ Play elsewhere</button>
+        </div>
+        <div class="game-grid" id="games"></div>
+        <div class="empty-state hidden" id="emptyState"><div>🛸</div><h3>No games found</h3><p>Try another search or category.</p></div>
+      </section>
+
+      <section class="callout">
+        <div class="callout-icon">✨</div>
+        <div><h3>Got a game idea?</h3><p>GavGames is just getting started. More games can be added anytime.</p></div>
+        <a href="mailto:hello@example.com?subject=GavGames%20game%20suggestion">Suggest a game ↗</a>
+      </section>
+    </main>
+    <footer><a class="brand footer-brand" href="#"><span class="brand-mark">G</span><span>gav<span class="brand-accent">games</span></span></a><span>Made to play. © <span id="year"></span> GavGames</span></footer>
+  </div>
+
+  <section class="player-view hidden" id="playerView">
+    <header class="player-topbar">
+      <button class="back-btn" id="backButton">← <span>All games</span></button>
+      <div class="player-title" id="playerTitle">Game</div>
+      <button class="player-fav" id="playerFavorite" aria-label="Toggle favorite">♡</button>
+    </header>
+    <div class="player-content">
+      <div class="player-frame" id="playerFrame"></div>
+      <div class="player-info"><div><div class="eyebrow">NOW PLAYING</div><h2 id="playerHeading">Game title</h2><p id="playerDescription"></p></div><span class="player-tag">GAVGAMES</span></div>
+    </div>
+  </section>
+  <script src="games.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
