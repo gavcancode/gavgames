@@ -109,10 +109,21 @@
         <span class="ad-slot-size">Responsive banner</span>
       </section>
 
+      <section class="suggestion-form-panel hidden" id="suggestionFormPanel" aria-labelledby="suggestionFormTitle">
+        <div class="suggestion-form-heading"><div><div class="eyebrow">HELP BUILD GAVGAMES</div><h2 id="suggestionFormTitle">Suggest a game</h2><p>Know a game we should add? Send it straight to the GavGames team.</p></div><button type="button" class="suggestion-close" id="closeSuggestionForm" aria-label="Close suggestion form">×</button></div>
+        <form id="publicSuggestionForm">
+          <label>Game name<input name="gameName" maxlength="100" required placeholder="What game should we add?"></label>
+          <label>Why should we add it?<textarea name="message" maxlength="1200" rows="3" required placeholder="Tell us what makes it fun..."></textarea></label>
+          <label>Game link (optional)<input name="gameUrl" type="url" maxlength="500" placeholder="https://..."></label>
+          <button class="primary-btn" type="submit" id="submitSuggestion">Send suggestion <span>→</span></button>
+          <p class="suggestion-form-status" id="suggestionFormStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
       <section class="callout">
         <div class="callout-icon">✨</div>
         <div><h3>What should we add next?</h3><p>Have a game suggestion? Help shape the next GavGames update.</p></div>
-        <a href="https://github.com/gavcancode/gavgames/issues/new?title=Game%20suggestion" target="_blank" rel="noopener noreferrer">Suggest a game ↗</a>
+        <button class="suggestion-open-btn" id="openSuggestionForm" type="button">Suggest a game ↗</button>
       </section>
     </main>
     <footer><a class="brand footer-brand" href="#"><span class="brand-mark">G</span><span>gav<span class="brand-accent">games</span></span></a><span>Made to play. © <span id="year"></span> GavGames</span><a class="developer-link" href="developer.html">Developer Studio ↗</a></footer>
@@ -131,5 +142,6 @@
   </section>
   <script src="games.js"></script>
   <script src="app.js"></script>
+  <script src="suggestions.js"></script>
 </body>
 </html>
