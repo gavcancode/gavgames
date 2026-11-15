@@ -3,6 +3,8 @@ let category="All",view="home",currentGame=null;
 let favorites=new Set(JSON.parse(localStorage.getItem("gavgames-favorites")||"[]"));
 const $=id=>document.getElementById(id);
 $("year").textContent=new Date().getFullYear();
+const featuredGame=GAMES.find(g=>g.id==="hexgl")||GAMES[0];
+if(featuredGame){$("featuredThumbnail").src=thumbnailFor(featuredGame);$("featuredThumbnail").alt=`${featuredGame.title} game preview`;$("spotlightTitle").textContent=featuredGame.title;$("spotlightDescription").textContent=featuredGame.description;$("featuredPlayButton").innerHTML=`Play ${featuredGame.title} <span>→</span>`;}
 function saveFavorites(){localStorage.setItem("gavgames-favorites",JSON.stringify([...favorites]));$("favoriteCount").textContent=favorites.size;}
 function thumbnailFor(game){return game.thumbnail||`https://s.wordpress.com/mshots/v1/${encodeURIComponent(game.url)}?w=700`;}
 function render(){
@@ -42,6 +44,6 @@ function mountGame(game){$("playerFrame").innerHTML=`<div class="hosted-game"><i
 function playRandomGame(){const playable=GAMES.filter(g=>g.type!=="external");if(playable.length)openGame(playable[Math.floor(Math.random()*playable.length)].id);}
 $("randomGameButton").addEventListener("click",playRandomGame);
 $("heroRandomButton").addEventListener("click",playRandomGame);
-$("featuredPlayButton").addEventListener("click",()=>openGame("hexgl"));
+$("featuredPlayButton").addEventListener("click",()=>featuredGame&&openGame(featuredGame.id));
 document.querySelectorAll("[data-shortcut-category]").forEach(button=>button.addEventListener("click",()=>{if(view!=="home")setView("home");category=button.dataset.shortcutCategory;document.querySelectorAll(".filter").forEach(filter=>filter.classList.toggle("active",filter.dataset.category===category));render();$("gameGrid").scrollIntoView({behavior:"smooth",block:"start"});}));
 saveFavorites();render();
