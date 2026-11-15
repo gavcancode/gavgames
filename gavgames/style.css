@@ -77,6 +77,6 @@
 .game-card:hover .game-thumbnail{transform:scale(1.06)}
 .game-thumbnail.image-failed{display:none}
 .game-badge,.fav-btn{z-index:2}
-.spotlight-thumbnail{position:absolute;z-index:1;width:190px;height:140px;object-fit:cover;border-radius:16px;transform:rotate(-7deg);box-shadow:0 18px 35px #0008;border:2px solid #ffffff45}
+.spotlight-thumbnail{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;border-radius:0;transform:none;opacity:.62;filter:saturate(1.12);box-shadow:none;border:0;z-index:0}.spotlight-art:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,17,38,.12),rgba(34,25,57,.55) 70%,rgba(34,25,57,.92))}.spotlight-orbit{z-index:2;pointer-events:none}.spotlight-star{z-index:3}
 .spotlight-orbit{z-index:0}
-@media(max-width:650px){.spotlight-thumbnail{width:150px;height:110px;opacity:.9}}
+@media(max-width:650px){.spotlight-thumbnail{opacity:.42}.spotlight-art:after{background:linear-gradient(90deg,rgba(20,17,38,.35),rgba(34,25,57,.75))}}
