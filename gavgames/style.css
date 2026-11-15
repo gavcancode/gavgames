@@ -112,3 +112,19 @@
 #publicSuggestionForm .primary-btn:disabled{opacity:.55;cursor:wait}
 .suggestion-form-status{font-size:12px;color:#bca4ff;margin:0;min-height:16px}
 @media(max-width:650px){.suggestion-form-panel{padding:18px 15px}.suggestion-open-btn{margin-left:0}.callout{gap:12px}}
+
+/* On-site player suggestion form */
+.suggestion-open-btn{margin-left:auto;border:0;background:none;color:#c3a5ff;font-size:11px;font-weight:800;white-space:nowrap;cursor:pointer}
+.suggestion-form-panel{margin:-25px 0 38px;padding:24px;border:1px solid #ffffff20;border-radius:18px;background:linear-gradient(120deg,#211c39,#1b1a30)}
+.suggestion-form-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}
+.suggestion-form-heading h2{font:700 25px 'Space Grotesk',sans-serif;margin:7px 0}
+.suggestion-form-heading p{font-size:12px;color:var(--muted);margin:0}
+.suggestion-close{background:#ffffff12;border:1px solid #ffffff20;border-radius:9px;font-size:21px;width:34px;height:34px;color:white}
+#publicSuggestionForm{display:grid;gap:13px}
+#publicSuggestionForm label{display:grid;gap:6px;font-size:11px;font-weight:700;color:#d7d1e8}
+#publicSuggestionForm input,#publicSuggestionForm textarea{width:100%;background:#111121;border:1px solid #ffffff20;border-radius:9px;padding:12px;color:white;font:inherit;font-size:12px}
+#publicSuggestionForm textarea{resize:vertical}
+#publicSuggestionForm .primary-btn{justify-self:start;border:0;cursor:pointer}
+#publicSuggestionForm .primary-btn:disabled{opacity:.55;cursor:wait}
+.suggestion-form-status{font-size:12px;color:#bca4ff;margin:0;min-height:16px}
+@media(max-width:650px){.suggestion-form-panel{padding:18px 15px}.suggestion-open-btn{margin-left:0}.callout{gap:12px}}
