@@ -1,6 +1,6 @@
 # GavGames third-party game credits
 
-GavGames currently includes 19 third-party browser games in addition to six original GavGames mini-games. Third-party titles are embedded from their publishers' public game pages; GavGames does not claim to have created them.
+GavGames currently features 19 third-party browser games, plus links to the CrazyGames and Poki portals. The six original GavGames code-based mini-games have been removed. Third-party titles are embedded from their publishers' public game pages; GavGames does not claim to have created them.
 
 ## Official projects
 
