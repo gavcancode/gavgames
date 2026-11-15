@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101020">
-  <meta name="description" content="GavGames — find your next favorite browser game.">
+  <meta name="description" content="GavGames — discover and play free browser games. Quick games, big fun, no downloads.">
   <title>GavGames — Play Something</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,18 +18,22 @@
       </a>
       <nav class="top-nav" aria-label="Main navigation">
         <button class="nav-link active" data-view="home">Home</button>
+        <a class="nav-link nav-anchor" href="#categories">Categories</a>
         <button class="nav-link" data-view="favorites">Favorites <span id="favoriteCount" class="count">0</span></button>
       </nav>
-      <a class="top-pill" href="#gameGrid">Explore games <span>↗</span></a>
+      <button class="top-pill" id="randomGameButton" type="button">Surprise me <span>✦</span></button>
     </header>
 
     <main>
       <section class="hero" id="hero">
         <div class="hero-copy">
           <div class="eyebrow"><span class="live-dot"></span> YOUR NEXT BREAK STARTS HERE</div>
-          <h1>Find your next<br><span class="gradient-text">favorite game.</span></h1>
-          <p>Quick games. Big fun. No downloads required.</p>
-          <a class="primary-btn" href="#gameGrid">Explore games <span>→</span></a>
+          <h1>Less scrolling.<br><span class="gradient-text">More playing.</span></h1>
+          <p>Find a new favorite, challenge your reflexes, or just take a quick break. No downloads required.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#gameGrid">Explore games <span>→</span></a>
+            <button class="secondary-btn" id="heroRandomButton" type="button">I'm feeling lucky <span>✦</span></button>
+          </div>
         </div>
         <div class="hero-art" aria-hidden="true">
           <div class="orb orb-one"></div><div class="orb orb-two"></div>
@@ -37,12 +43,37 @@
           <div class="hero-ring"></div>
           <div class="hero-spark">✦</div>
         </div>
-        <div class="hero-bottom"><span>PRESS PLAY</span><span>✦</span><span>REPEAT</span></div>
+        <div class="hero-bottom"><span>FIND A GAME</span><span>✦</span><span>MAKE IT A GOOD BREAK</span></div>
+      </section>
+
+      <section class="spotlight" aria-labelledby="spotlightTitle">
+        <div class="spotlight-art" aria-hidden="true">
+          <span class="spotlight-orbit"></span><span class="spotlight-ball">🏀</span>
+          <span class="spotlight-star">✦</span>
+        </div>
+        <div class="spotlight-copy">
+          <div class="eyebrow">GAVGAMES PICK</div>
+          <h2 id="spotlightTitle">Take your shot.</h2>
+          <p>Step up to the line in Hoop Shot. How many baskets can you make?</p>
+          <button class="primary-btn" id="featuredPlayButton" type="button">Play Hoop Shot <span>→</span></button>
+        </div>
+        <div class="spotlight-label">FEATURED GAME</div>
+      </section>
+
+      <section class="category-section" id="categories">
+        <div class="section-heading compact-heading">
+          <div><div class="eyebrow">PICK YOUR VIBE</div><h2>What are you in the mood for?</h2></div>
+        </div>
+        <div class="category-grid">
+          <button class="category-tile category-arcade" data-shortcut-category="Arcade" type="button"><span>🕹️</span><span><strong>Arcade</strong><small>Fast and fun</small></span><b>↗</b></button>
+          <button class="category-tile category-sports" data-shortcut-category="Sports" type="button"><span>🏀</span><span><strong>Sports</strong><small>Go for the win</small></span><b>↗</b></button>
+          <button class="category-tile category-puzzle" data-shortcut-category="Puzzle" type="button"><span>🧩</span><span><strong>Puzzle</strong><small>Give your brain a workout</small></span><b>↗</b></button>
+        </div>
       </section>
 
       <section class="games-section" id="gameGrid">
         <div class="section-heading">
-          <div><div class="eyebrow">THE GAME LIBRARY</div><h2 id="sectionTitle">Play something good.</h2></div>
+          <div><div class="eyebrow">THE GAME LIBRARY</div><h2 id="sectionTitle">Find your next game.</h2></div>
           <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games..." aria-label="Search games"></div>
         </div>
         <div class="filters" id="filters">
@@ -58,8 +89,8 @@
 
       <section class="callout">
         <div class="callout-icon">✨</div>
-        <div><h3>Got a game idea?</h3><p>GavGames is just getting started. More games can be added anytime.</p></div>
-        <a href="mailto:hello@example.com?subject=GavGames%20game%20suggestion">Suggest a game ↗</a>
+        <div><h3>What should we add next?</h3><p>Have a game suggestion? Help shape the next GavGames update.</p></div>
+        <a href="https://github.com/gavcancode/gavgames/issues/new?title=Game%20suggestion" target="_blank" rel="noopener noreferrer">Suggest a game ↗</a>
       </section>
     </main>
     <footer><a class="brand footer-brand" href="#"><span class="brand-mark">G</span><span>gav<span class="brand-accent">games</span></span></a><span>Made to play. © <span id="year"></span> GavGames</span></footer>
