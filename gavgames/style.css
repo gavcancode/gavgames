@@ -54,3 +54,18 @@
  .hero-actions{gap:8px}
  .secondary-btn{padding:12px 13px}
 }
+
+/* Hosted game player and expanded library */
+.filters{flex-wrap:wrap}
+.hosted-game{width:100%;height:clamp(480px,72vh,820px);display:flex;flex-direction:column;background:#0b0b14}
+.hosted-game iframe{width:100%;height:100%;min-height:0;flex:1;border:0;background:#0b0b14}
+.hosted-fallback{padding:9px 12px;text-align:center;font-size:11px;color:#aaa;background:#171729}
+.hosted-fallback a,.player-attribution a{color:#c6a8ff;text-decoration:underline;text-underline-offset:3px}
+.player-attribution{font-size:11px!important;color:#8f8da7!important;margin-top:8px!important}
+@media(max-width:650px){
+ .filters{flex-wrap:nowrap}
+ .hosted-game{height:calc(100dvh - 190px);min-height:430px}
+ .player-info{align-items:flex-start;gap:12px}
+ .player-info h2{font-size:22px}
+ .player-tag{display:none}
+}

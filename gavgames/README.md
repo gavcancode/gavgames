@@ -28,3 +28,15 @@ Only embed games when their publisher permits embedding. Many game portals block
 - The mini-games are original simple demos and run locally in the browser.
 - The Google Fonts import is optional; the site falls back to system fonts if unavailable.
 - Change `hello@example.com` in `index.html` to your preferred contact address, or remove the suggestion link.
+
+
+## Game library expansion
+
+The catalog currently includes **25 playable games**:
+- 6 original GavGames mini-games.
+- 4 notable open-source games: 2048, HexGL, Hextris, and A Dark Room.
+- 15 additional browser games from the MIT-licensed `sausi-7/games` collection.
+
+The 19 third-party games are currently embedded from their upstream public game pages rather than copied into this repository. This keeps the GavGames repo lightweight and preserves the upstream source of each game, but means a game can stop loading if its host changes or blocks embedding. Each card includes a direct-open fallback and the player shows its source and license.
+
+See [THIRD_PARTY_GAMES.md](THIRD_PARTY_GAMES.md) for source and license details. Before copying any third-party game files into this repository, review the exact license and notices for its code, images, audio, and fonts.
